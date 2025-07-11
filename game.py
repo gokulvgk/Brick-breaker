@@ -13,11 +13,11 @@ class Board:
         for row in range(self.rows):
             for col in range(self.columns):
                 if (row == 2 or row == 3) and 2 <= col <= self.columns - 3:
-                    self.board[row][col] = 'T'
+                    self.board[row][col] = '='
                 elif row == 0 or col == 0 or col == self.columns - 1:
-                    self.board[row][col] = 'W'
+                    self.board[row][col] = '+'
                 elif row == self.rows - 1:
-                    self.board[row][col] = 'G'
+                    self.board[row][col] = '_'
                 else:
                     self.board[row][col] = ' '
         self.board[self.rows-1][self.columns//2] = 'o'
@@ -26,22 +26,22 @@ class Board:
         os.system("clear")
         for row in self.board:
             print(''.join(row))
-        time.sleep(0.6)
+        time.sleep(0.5)
             
     def shootBall(self,direction):
         cmove={'st':0,'lt':-1,'rt':1}
         polarity=cmove[direction]
         ballr=self.rows - 1
         ballc=self.ballPos
-        while not self.board[ballr - 1][ballc + polarity]=='T' and not ballr-1==0:
-            if self.board[ballr - 1][ballc + polarity] == 'W':polarity*=-1
+        while not self.board[ballr - 1][ballc + polarity]=='=' and not ballr-1==0:
+            if self.board[ballr - 1][ballc + polarity] == '+':polarity*=-1
             self.board[ballr - 1][ballc + polarity]='o'
             self.board[ballr][ballc]=' '
             ballr-=1
             ballc += polarity 
             self.printBoard()
         print("1st loop")
-        if self.board[ballr -1][ballc + polarity]=='T':
+        if self.board[ballr -1][ballc + polarity]=='=':
             self.board[ballr -1][ballc + polarity]='o'
             self.board[ballr][ballc]=' '
             self.printBoard()
@@ -49,7 +49,7 @@ class Board:
             ballc+=polarity
             polarity=0
         while ballr<self.rows-1:
-            if self.board[ballr + 1][ballc + polarity] == 'W':polarity*=-1
+            if self.board[ballr + 1][ballc + polarity] == '+':polarity*=-1
             self.board[ballr][ballc]=' '
             self.board[ballr + 1][ballc+polarity]='o'
             self.printBoard()
@@ -60,10 +60,7 @@ class Board:
         self.printBoard()
     
     def newbase(self):
-        # for i in range(len(self.board[-1])):
-        #     if self.board[-1][i] == " ":
-        #         self.board[-1][i]='G'
-        self.board[-1] = ["G" if x == " " else x  for x in self.board[-1]]
+        self.board[-1] = ['_' if x == " " else x  for x in self.board[-1]]
 
 b = Board()
 b.printBoard()

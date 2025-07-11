@@ -4,8 +4,8 @@ This project outlines the steps and features required to implement a customizabl
 
 ## Features to Implement
 
-- **Design the Game Boundaries**  
-  Create walls and borders to contain the ball and gameplay elements within the screen.
+- ~~**Design the Game Boundaries**
+  Create walls and borders to contain the ball and gameplay elements within the screen.~~
 
 - **Add Score Board**  
   Implement a scoreboard to track the player's points as they break bricks.
@@ -15,6 +15,9 @@ This project outlines the steps and features required to implement a customizabl
 
 - **Board Size Customization**  
   Allow customization of the board size (width and height), affecting the layout and difficulty.
+
+- **Input Sanitization and Exception Handling**
+  Stripping unecessary characters from user inputs and handling input-type exceptions
 
 ## Future Improvements
 
